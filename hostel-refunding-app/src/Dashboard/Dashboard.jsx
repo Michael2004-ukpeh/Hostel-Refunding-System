@@ -1,21 +1,24 @@
 import Navbar from "../components/Dashboard/Navbar"
+import Statistics from "../components/Dashboard/Statistics"
+import LearningMaterials from "../components/Dashboard/LearningMaterials"
+import Activities from "../components/Dashboard/Activities"
 
 export default function Dashboard(){
     return (
         <main className="lg:flex lg:items-start">
             <Navbar />
 
-            {/* <div className="lg:bg-[#27779B] w-full ">
-                <section className="px-[20px] lg:px-[30px] bg-[#fff] lg:rounded-l-[40px] py-[30px] w-full h-full ">
+            <div className=" w-full ">
+                <section className="px-[20px] lg:px-[30px] bg-[#fff] py-[30px] w-full h-full ">
                     
                     <Statistics />
 
                     <div className="flex flex-col lg:flex-row lg:gap-[30px] 2xl:gap-[50px]">
-                        <AvailableCourses />
+                        <LearningMaterials />
                         <Activities />
                     </div>
                 </section>
-            </div> */}
+            </div>
         </main>
     )
 }

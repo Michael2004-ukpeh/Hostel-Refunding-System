@@ -44,7 +44,7 @@ export default function Navbar() {
           align="stretch"
           height="100%"
           display={{ base: "flex", md: "none" }}
-          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[50px] text-[18px] w-[300px] "
+          className="flex flex-col text-[#0A0A0A] text-left bg-[#101720] px-[20px] pb-[30px] pt-[50px] text-[18px] w-[300px] "
         >
             <Box className="relative w-[90%] mx-auto ">
               <img 
