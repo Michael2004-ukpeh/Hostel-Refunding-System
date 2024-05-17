@@ -1,8 +1,8 @@
 import { FaEllipsisV } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Statistics({setShowHostelPayment}) {
-    const [showRefundModal, setShowRefundModal] = useState(false);
+export default function Statistics({setShowHostelPayment,hostelAllocationMessage, setRefundSuccess, showRefundModal, setShowRefundModal}) {
+
 
     function handleRefundModal(){
         setShowRefundModal(prev => {
@@ -34,15 +34,20 @@ export default function Statistics({setShowHostelPayment}) {
                     <div>
                         <p className="text-[16px] font-[500] mb-[30px] ">Hostel Allocation</p>
 
-                        <button onClick={()=> setShowHostelPayment(true)} className='bg-[#101720] rounded-[5px] py-[7px] px-[10px] shadow text-[#fff] '>Request Hostel</button>
+                        {hostelAllocationMessage ? 
+                            <p className='text-[18px] text-[orange] font-[500] '>Waiting for allocation</p> 
+                            : 
+                            <button onClick={()=> setShowHostelPayment(true)} className='bg-[#101720] rounded-[5px] py-[7px] px-[10px] shadow text-[#fff] '>Request Hostel</button>
+                        }
+                        
                     </div> 
 
-                    <div onClick={handleRefundModal} className=" cursor-pointer ">
+                    {hostelAllocationMessage && <div onClick={handleRefundModal} className=" cursor-pointer ">
                         <FaEllipsisV />
-                    </div>
+                    </div>}
 
                     <div style={{display: showRefundModal ? "block": "none"}} className='absolute top-[45px] right-[28px] h-[70px] shadow p-[30px] bg-[#f5f5f5] flex items-center rounded-[5px]  '>
-                        <button className='bg-none '>Request for Refund</button>
+                        <button onClick={()=> setRefundSuccess(true)} className='bg-none '>Request for Refund</button>
                     </div>
                 </div>
             </div>

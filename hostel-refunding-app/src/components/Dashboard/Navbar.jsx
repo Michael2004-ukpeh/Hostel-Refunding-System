@@ -82,7 +82,7 @@ export default function Navbar() {
                 src="/images/users-01.png" 
                 alt="User Icon"  
               />
-              <p>Students</p>
+              <p>Results</p>
             </Box>
           </a>
 

@@ -48,7 +48,7 @@ export default function LoginForm() {
                 </div>
 
                 <Link to={'/dashboard'} className="mb-[50px] ">
-                    <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button>
+                    <button className="bg-[#101720] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button>
                 </Link>
 
                 <div className="flex gap-[10px] justify-center text-[14px] ">

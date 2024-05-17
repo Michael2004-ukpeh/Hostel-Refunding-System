@@ -1,6 +1,6 @@
 import { FaTimesCircle} from 'react-icons/fa'
 
-export default function PaymentSuccessful({ successfulPayment, setSuccessfulPayment }) {
+export default function PaymentSuccessful({ successfulPayment, setSuccessfulPayment, setHostelAllocationMessage }) {
     return (
         <div style={{display: successfulPayment ? 'block' : 'none'}} className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
             <div className="bg-[#FEFEFE] absolute rounded-[10px] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] pt-[20px] px-[30px] pb-[30px] w-[40%] ">
@@ -14,7 +14,10 @@ export default function PaymentSuccessful({ successfulPayment, setSuccessfulPaym
                 <p className="text-[#384237] font-[26px] mb-[40px] text-center ">Your payment for a hostel space is successful and you will be informed when a space is allocated.</p>
 
                 <div className="w-full flex justify-center mt-[20px] ">
-                    <button onClick={()=> setSuccessfulPayment(false)} className='bg-[#101720] rounded-[16px] py-[12px] px-[10px] w-[300px] text-[#fff] '>Back to Dashboard</button>
+                    <button onClick={()=> {
+                            setSuccessfulPayment(false)
+                            setHostelAllocationMessage(true)
+                        }} className='bg-[#101720] rounded-[16px] py-[12px] px-[10px] w-[300px] text-[#fff] '>Back to Dashboard</button>
                 </div>
             </div>
 
