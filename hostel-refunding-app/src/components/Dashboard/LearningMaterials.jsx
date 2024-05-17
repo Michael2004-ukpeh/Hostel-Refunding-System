@@ -21,8 +21,6 @@ export default function LearningMaterials() {
                     <div className="px-[15px] flex flex-col gap-[15px] ">
                         <h3 className="text-[18px] font-[600] text-[#101828] ">Database Management System (CSC 482.1)</h3>
 
-                        {/* <p className="text-[16px] text-[500] font-[#475467] ">An introduction to Database Management System</p> */}
-
                         <a href={""} className="px-[27px] py-[5px] rounded-[8px] bg-[#27779B] text-[#fff] text-[14px] font-[700] w-[100px] h-[38px] flex items-center justify-center ">Download</a>
                     </div>
                 </div>
@@ -36,8 +34,6 @@ export default function LearningMaterials() {
 
                     <div className="px-[15px] flex flex-col gap-[15px] ">
                         <h3 className="text-[18px] font-[600] text-[#101828] ">An Introduction to Enterprenuership (GES 400)</h3>
-
-                        {/* <p className="text-[16px] text-[500] font-[#475467] ">A complete introduction to Enterprenuership</p> */}
 
                         <a href={""} className="px-[27px] py-[5px] rounded-[8px] bg-[#27779B] text-[#fff] text-[14px] font-[700] w-[100px] h-[38px] flex items-center justify-center ">Download</a>
                     </div>

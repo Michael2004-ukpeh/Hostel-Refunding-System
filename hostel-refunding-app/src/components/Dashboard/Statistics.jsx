@@ -1,6 +1,15 @@
 import { FaEllipsisV } from 'react-icons/fa';
+import { useState } from 'react';
 
 export default function Statistics() {
+    const [showRefundModal, setShowRefundModal] = useState(false);
+
+    function handleRefundModal(){
+        setShowRefundModal(prev => {
+            setShowRefundModal(!prev);
+        })
+    }
+
     return (
         <>
             <div className="mb-[30px] ">
@@ -21,14 +30,19 @@ export default function Statistics() {
                     </div>
                 </div>
 
-                <div className="border-[1px] border-[#EAECF0] p-[20px] rounded-[12px] shadow flex items-start justify-between ">
+                <div className="border-[1px] border-[#EAECF0] p-[20px] rounded-[12px] shadow flex items-start justify-between relative ">
                     <div>
-                        <p className="text-[16px] font-[500] mb-[15px] ">Hostel Allocation</p>
-                        <p className="text-[32px] text-[red] font-[600] ">Not paid</p>
+                        <p className="text-[16px] font-[500] mb-[30px] ">Hostel Allocation</p>
+
+                        <button className='bg-[#101720] rounded-[5px] py-[7px] px-[10px] shadow text-[#fff] '>Request Hostel</button>
                     </div> 
 
-                    <div className=" cursor-pointer ">
+                    <div onClick={handleRefundModal} className=" cursor-pointer ">
                         <FaEllipsisV />
+                    </div>
+
+                    <div style={{display: showRefundModal ? "block": "none"}} className='absolute top-[45px] right-[28px] h-[70px] shadow p-[30px] bg-[#f5f5f5] flex items-center rounded-[5px]  '>
+                        <button className='bg-none '>Request for Refund</button>
                     </div>
                 </div>
             </div>

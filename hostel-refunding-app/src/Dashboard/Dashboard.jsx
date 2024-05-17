@@ -2,6 +2,7 @@ import Navbar from "../components/Dashboard/Navbar"
 import Statistics from "../components/Dashboard/Statistics"
 import LearningMaterials from "../components/Dashboard/LearningMaterials"
 import Activities from "../components/Dashboard/Activities"
+import ConfirmHostelPayment from "../components/Modals/ConfirmHostelPayment"
 
 export default function Dashboard(){
     return (
@@ -19,6 +20,8 @@ export default function Dashboard(){
                     </div>
                 </section>
             </div>
+
+            <ConfirmHostelPayment />
         </main>
     )
 }
