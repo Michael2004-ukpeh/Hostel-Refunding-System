@@ -1,7 +1,7 @@
 import { FaEllipsisV } from 'react-icons/fa';
 import { useState } from 'react';
 
-export default function Statistics() {
+export default function Statistics({setShowHostelPayment}) {
     const [showRefundModal, setShowRefundModal] = useState(false);
 
     function handleRefundModal(){
@@ -34,7 +34,7 @@ export default function Statistics() {
                     <div>
                         <p className="text-[16px] font-[500] mb-[30px] ">Hostel Allocation</p>
 
-                        <button className='bg-[#101720] rounded-[5px] py-[7px] px-[10px] shadow text-[#fff] '>Request Hostel</button>
+                        <button onClick={()=> setShowHostelPayment(true)} className='bg-[#101720] rounded-[5px] py-[7px] px-[10px] shadow text-[#fff] '>Request Hostel</button>
                     </div> 
 
                     <div onClick={handleRefundModal} className=" cursor-pointer ">

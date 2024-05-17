@@ -1,7 +1,8 @@
+import { FaTimesCircle} from 'react-icons/fa'
 
-export default function ConfirmHostelPayment() {
+export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelPayment, setSuccessfulPayment }) {
     return (
-        <div className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
+        <div style={{display: showHostelPayment ? 'block' : 'none'}} className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
             <div className="bg-[#FEFEFE] absolute rounded-[10px] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] pt-[20px] px-[20px] pb-[30px] w-[50%] ">
                 <h2 className="text-center text-[24px] mb-[10px] font-[700]">Confirm Hostel Payment  Details</h2>
 
@@ -33,8 +34,15 @@ export default function ConfirmHostelPayment() {
                 </div>
 
                 <div className="w-full flex justify-center mt-[20px] ">
-                    <button className='bg-[#101720] rounded-[16px] py-[12px] px-[10px] w-[300px] text-[#fff] '>Proceed</button>
+                    <button onClick={()=> {
+                        setShowHostelPayment(false)
+                        setSuccessfulPayment(true)
+                    }} className='bg-[#101720] rounded-[16px] py-[12px] px-[10px] w-[300px] text-[#fff] '>Proceed</button>
                 </div>
+            </div>
+
+            <div onClick={()=> setShowHostelPayment(false)} className='absolute right-[270px] top-[25px] z-100 cursor-pointer '>
+                <FaTimesCircle className='text-[50px] text-[#fff] ' />
             </div>
         </div>
     )
