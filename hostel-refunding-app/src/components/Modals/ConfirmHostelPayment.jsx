@@ -1,7 +1,8 @@
 import { FaTimesCircle} from 'react-icons/fa'
 import { useState } from 'react'
 import { PaystackButton } from 'react-paystack';
-import PaymentSuccessful from './PaymentSuccessful';
+import hostels from '../../../utils/hostel.json';
+
 
 export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelPayment, setHostelAllocationMessage }) {
     const publicKey = "pk_test_6247428fc2936651257b94d02a7491b2cff7018a";
@@ -11,6 +12,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
     const [phone, setPhone] = useState('');
     const [amount, setAmount] = useState('');
     const [hostel, setHostel] = useState('');
+    const [gender, setGender] = useState('');
 
     const componentProps = {
         email,
@@ -26,8 +28,11 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
             setShowHostelPayment(false);
             setHostelAllocationMessage(true);
         },
-        onClose: ()=> alert('Sure you wanna close')
+        onClose: ()=> {return null}
     }
+
+    const studentGender = Object.keys(hostels);
+    const studentHostel = gender ? hostels[gender] : [];
 
     return (
         <div style={{display: showHostelPayment ? 'block' : 'none'}} className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
@@ -35,7 +40,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                 <h2 className="text-center text-[24px] mb-[10px] font-[700]">Pay for Hostel Space</h2>
 
                 <form action="" onSubmit={(e)=> e.preventDefault()}>
-                    <div className='mb-[20px] '>
+                    <div className='mb-[15px] '>
                         <label htmlFor="full-name" className='mb-[10px] '>Full Name</label>
                         <input 
                             type="text" 
@@ -46,7 +51,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         />
                     </div>
 
-                    <div className='mb-[20px] '>
+                    <div className='mb-[15px] '>
                         <label htmlFor="email" className='mb-[10px] '>Email</label>
                         <input 
                             type="email" 
@@ -57,7 +62,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         />
                     </div>
 
-                    <div className='mb-[20px] '>
+                    {/* <div className='mb-[20px] '>
                         <label htmlFor="phone" className='mb-[10px] '>Phone Number</label>
                         <input 
                             type="number" 
@@ -66,14 +71,30 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                             onChange={(e)=> setPhone(e.target.value)} 
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
                         />
+                    </div> */}
+
+                    <div className='mb-[15px] '>
+                        <label htmlFor="gender" className='mb-[10px] '>Gender</label>
+                        <select value={gender} onChange={(e)=> setGender(e.target.value)} className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0' >
+                            <option value="">--</option>
+                            {studentGender.map((gender, index)=> {
+                                return(
+
+                                    <option key={index} value={gender}>{gender}</option>
+                                )
+                            })}
+                        </select>
                     </div>
 
-                    <div className='mb-[20px] '>
+                    <div className='mb-[15px] '>
                         <label htmlFor="hostel" className='mb-[10px] '>Available Hostels</label>
                         <select value={hostel} onChange={(e)=> setHostel(e.target.value)} className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0' >
-                            <option value="">--Select Hostel--</option>
-                            <option value="Mandela Hostel">Mandela Hostel</option>
-                            <option value="NDDC Hostel">NDDC Hostel</option>
+                            <option value="">--</option>
+                            {studentHostel.map((hostel, index)=> {
+                                return (
+                                    <option key={index} value={hostel}>{hostel}</option>
+                                )
+                            })}
                         </select>
                     </div>
 
@@ -122,7 +143,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
             </div>
 
             <div onClick={()=> setShowHostelPayment(false)} className='absolute right-[25%] top-[2%] z-100 cursor-pointer '>
-                <FaTimesCircle className='text-[50px] text-[#fff] ' />
+                <FaTimesCircle className='text-[40px] text-[#fff] ' />
             </div>
         </div>
     )
