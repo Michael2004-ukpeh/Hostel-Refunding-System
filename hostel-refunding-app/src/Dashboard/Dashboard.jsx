@@ -41,6 +41,8 @@ export default function Dashboard(){
                 showHostelPayment={showHostelPayment} 
                 setShowHostelPayment={setShowHostelPayment}
                 setSuccessfulPayment={setSuccessfulPayment}
+                hostelAllocationMessage={hostelAllocationMessage}
+                setHostelAllocationMessage={setHostelAllocationMessage}
             />
 
             <PaymentSuccessful 
