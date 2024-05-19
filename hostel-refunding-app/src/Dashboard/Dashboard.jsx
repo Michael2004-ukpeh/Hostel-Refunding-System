@@ -5,7 +5,6 @@ import Statistics from "../components/Dashboard/Statistics"
 import LearningMaterials from "../components/Dashboard/LearningMaterials"
 import Activities from "../components/Dashboard/Activities"
 import ConfirmHostelPayment from "../components/Modals/ConfirmHostelPayment"
-import PaymentSuccessful from "../components/Modals/PaymentSuccessful"
 import Refund from "../components/Modals/Refund"
 
 export default function Dashboard(){
@@ -47,12 +46,6 @@ export default function Dashboard(){
                 hostelAllocationMessage={hostelAllocationMessage}
                 setHostelAllocationMessage={setHostelAllocationMessage}
             />
-
-            {/* <PaymentSuccessful 
-                successfulPayment={successfulPayment}
-                setSuccessfulPayment={setSuccessfulPayment}
-                setHostelAllocationMessage={setHostelAllocationMessage}
-            /> */}
 
             <Refund 
                 refundSuccess={refundSuccess}

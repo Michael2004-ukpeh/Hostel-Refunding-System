@@ -70,17 +70,6 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         />
                     </div>
 
-                    {/* <div className='mb-[20px] '>
-                        <label htmlFor="phone" className='mb-[10px] '>Phone Number</label>
-                        <input 
-                            type="number" 
-                            placeholder='Enter phone number'
-                            value={phone}
-                            onChange={(e)=> setPhone(e.target.value)} 
-                            className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
-                        />
-                    </div> */}
-
                     <div className='mb-[15px] '>
                         <label htmlFor="gender" className='mb-[10px] '>Gender</label>
                         <select value={gender} onChange={(e)=> setGender(e.target.value)} className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0' >
@@ -119,35 +108,6 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
 
                     <PaystackButton className='bg-[#101720] w-full rounded-[8px] py-[12px] px-[10px] w-[300px] text-[#fff] ' {...componentProps} />
                 </form>
-
-                {/* <div className="border-[1px] border-[#DFE5DA] rounded-[8px] ">
-                    <div className="flex items-center justify-between gap-[50px] py-[20px] px-[10px] border-b-[1px] border-b-[#DFE5DA] ">
-                        <p>Full Name</p>
-                        <p>Vincent Chosen Goteh</p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-[50px] py-[20px] px-[10px] border-b-[1px] border-b-[#DFE5DA] ">
-                        <p>Level</p>
-                        <p>400</p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-[50px] py-[20px] px-[10px] border-b-[1px] border-b-[#DFE5DA] ">
-                        <p>Mat. No</p>
-                        <p>U2019/5570049</p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-[50px] py-[20px] px-[10px] border-b-[1px] border-b-[#DFE5DA] ">
-                        <p>Department</p>
-                        <p>Computer Sc.</p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-[50px] py-[20px] px-[10px] ">
-                        <p>Amount</p>
-                        <p>N25,000</p>
-                    </div>
-                </div>
-
-                 */}
             </div>
 
             <div onClick={()=> setShowHostelPayment(false)} className='absolute right-[25%] top-[2%] z-100 cursor-pointer '>

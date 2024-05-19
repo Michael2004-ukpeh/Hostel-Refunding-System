@@ -120,8 +120,8 @@ export default function Navbar() {
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
                 <div className="w-[30px] h-[30px]  ">
                   <img 
-                    src="/images/ayele.png" 
-                    alt="Ayele"
+                    src="/images/my-photo.jpg" 
+                    alt="Chosen"
                     className="w-full h-full rounded-[50%]" 
                   />
                 </div>

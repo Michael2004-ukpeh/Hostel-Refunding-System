@@ -8,7 +8,7 @@ export default function Activities() {
                 <div className="flex items-center gap-[5px] ">
                     <div className="w-[30px] h-[30px]  ">
                         <img 
-                            src="/images/aliah.png" 
+                            src="/images/my-photo.jpg" 
                             alt="Demi"
                             className="w-full h-full rounded-[50%]" 
                         />
@@ -23,7 +23,7 @@ export default function Activities() {
                 <div className="flex items-center gap-[5px] ">
                     <div className="w-[30px] h-[30px]  ">
                         <img 
-                            src="/images/aliah.png" 
+                            src="/images/my-photo.jpg" 
                             alt="Aliah"
                             className="w-full h-full rounded-[50%]" 
                         />

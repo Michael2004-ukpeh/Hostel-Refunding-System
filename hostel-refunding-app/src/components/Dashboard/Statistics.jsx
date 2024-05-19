@@ -1,5 +1,4 @@
 import { FaEllipsisV } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
 
 export default function Statistics({setShowHostelPayment,hostelAllocationMessage, setRefundSuccess, showRefundStatus, showRefundModal, setShowRefundModal}) {
 
