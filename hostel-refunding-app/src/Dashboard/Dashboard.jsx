@@ -12,8 +12,10 @@ export default function Dashboard(){
     const [showHostelPayment, setShowHostelPayment] = useState(false);
     const [successfulPayment, setSuccessfulPayment] = useState(false);
     const [hostelAllocationMessage, setHostelAllocationMessage] = useState(false);
+
     const [refundSuccess, setRefundSuccess] = useState(false);
     const [showRefundModal, setShowRefundModal] = useState(false);
+    const [showRefundStatus, setShowRefundStatus] = useState(false);
 
     return (
         <main className="lg:flex lg:items-start">
@@ -26,6 +28,7 @@ export default function Dashboard(){
                         setShowHostelPayment={setShowHostelPayment}
                         hostelAllocationMessage={hostelAllocationMessage}
                         setRefundSuccess={setRefundSuccess}
+                        showRefundStatus={showRefundStatus}
                         showRefundModal={showRefundModal}
                         setShowRefundModal={setShowRefundModal}
                     />
@@ -45,16 +48,18 @@ export default function Dashboard(){
                 setHostelAllocationMessage={setHostelAllocationMessage}
             />
 
-            <PaymentSuccessful 
+            {/* <PaymentSuccessful 
                 successfulPayment={successfulPayment}
                 setSuccessfulPayment={setSuccessfulPayment}
                 setHostelAllocationMessage={setHostelAllocationMessage}
-            />
+            /> */}
 
             <Refund 
                 refundSuccess={refundSuccess}
                 setRefundSuccess={setRefundSuccess}
                 setShowRefundModal={setShowRefundModal}
+                showRefundStatus={showRefundStatus}
+                setShowRefundStatus={setShowRefundStatus}
             />
         </main>
     )

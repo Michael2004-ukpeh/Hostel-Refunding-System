@@ -1,5 +1,5 @@
 import { FaTimesCircle} from 'react-icons/fa'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PaystackButton } from 'react-paystack';
 import hostels from '../../../utils/hostel.json';
 
@@ -33,6 +33,14 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
 
     const studentGender = Object.keys(hostels);
     const studentHostel = gender ? hostels[gender] : [];
+
+    useEffect(()=> {
+        if(showHostelPayment){
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = "auto"
+        }
+    }, [showHostelPayment]);
 
     return (
         <div style={{display: showHostelPayment ? 'block' : 'none'}} className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
