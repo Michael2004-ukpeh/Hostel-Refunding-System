@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  IconButton,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";

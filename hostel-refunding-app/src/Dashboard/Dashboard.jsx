@@ -53,6 +53,7 @@ export default function Dashboard(){
                 setShowRefundModal={setShowRefundModal}
                 showRefundStatus={showRefundStatus}
                 setShowRefundStatus={setShowRefundStatus}
+                setHostelAllocationMessage={setHostelAllocationMessage}
             />
         </main>
     )

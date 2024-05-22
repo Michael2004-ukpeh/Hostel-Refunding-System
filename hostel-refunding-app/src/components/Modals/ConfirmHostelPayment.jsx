@@ -15,8 +15,8 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
     const [gender, setGender] = useState('');
 
     const componentProps = {
-        email,
-        amount: amount * 100,
+        email: 'chosenvincent@gmail.com',
+        amount: 30000 * 100,
         metadata: {
             name,
             phone,
@@ -53,9 +53,10 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         <input 
                             type="text" 
                             placeholder='Enter full name' 
-                            value={name}
+                            value="Vincent Chosen"
                             onChange={(e)=> setName(e.target.value)}
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
+                            disabled
                         />
                     </div>
 
@@ -64,9 +65,10 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         <input 
                             type="email" 
                             placeholder='Enter email' 
-                            value={email}
+                            value="chosenvincent@gmail.com"
                             onChange={(e)=> setEmail(e.target.value)}
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
+                            disabled
                         />
                     </div>
 
@@ -100,9 +102,10 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         <input 
                             type="number"
                             placeholder='Enter amount'
-                            value={amount}
+                            value="30000"
                             onChange={(e)=> setAmount(e.target.value)}
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
+                            disabled
                         />
                     </div>
 

@@ -1,5 +1,5 @@
 
-export default function Refund({refundSuccess, setRefundSuccess, setShowRefundModal, setShowRefundStatus}) {
+export default function Refund({refundSuccess, setRefundSuccess, setShowRefundModal, setShowRefundStatus,setHostelAllocationMessage}) {
     return (
         <div style={{display: refundSuccess ? 'block' : 'none'}} className="fixed z-50 inset-0 bg-[rgba(0,0,0,0.7)] ">
             <div className="bg-[#FEFEFE] absolute rounded-[10px] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] pt-[20px] px-[30px] pb-[30px] w-[40%] ">
@@ -17,6 +17,7 @@ export default function Refund({refundSuccess, setRefundSuccess, setShowRefundMo
                         setShowRefundModal(false)
                         setRefundSuccess(false);
                         setShowRefundStatus(true);
+                        setHostelAllocationMessage(false)
                     }} className='bg-[#101720] rounded-[16px] py-[12px] px-[10px] w-[300px] text-[#fff] '>Back to Dashboard</button>
                 </div>
             </div>
