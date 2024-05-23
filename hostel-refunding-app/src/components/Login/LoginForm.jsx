@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export default function LoginForm() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLogin, setIsLogin] = useState(false);
+
     return (
         <section className="md:w-[50%] flex flex-col md:justify-center ">
             <div className="text-center mb-[50px] md:max-w-[360px] md:mx-auto ">
@@ -8,13 +13,18 @@ export default function LoginForm() {
                 <p className="text-[#667085] text-[16px] font-[400] ">Welcome back! Please enter your details.</p>
             </div>
 
-            <form className="md:max-w-[360px] md:mx-auto " >
+            <form onSubmit={(e)=> {
+                e.preventDefault();
+                console.log(email, password)
+            }} className="md:max-w-[360px] md:mx-auto " >
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
                     <label htmlFor="email" className="text-[#344054] text-[14px] font-[500] ">Email</label>
                     <input 
                         type="email" 
                         name="email"
                         id="email"
+                        value={email}
+                        onChange={(e)=> setEmail(e.target.value)}
                         placeholder="Enter your email"
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
@@ -27,6 +37,8 @@ export default function LoginForm() {
                         type="password" 
                         name="password"
                         id="password"
+                        value={password}
+                        onChange={(e)=> setPassword(e.target.value)}
                         placeholder="Enter your password"
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
