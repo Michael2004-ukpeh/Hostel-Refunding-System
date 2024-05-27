@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
+
 export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +35,7 @@ export default function LoginForm() {
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
                     <label htmlFor="password" className="text-[#344054] text-[14px] font-[500] ">Password</label>
                     <input 
-                        type="password" 
+                        type="password"
                         name="password"
                         id="password"
                         value={password}

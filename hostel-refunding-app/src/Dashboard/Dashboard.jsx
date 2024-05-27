@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import Navbar from "../components/Dashboard/Navbar"
 import Statistics from "../components/Dashboard/Statistics"
@@ -6,6 +6,9 @@ import LearningMaterials from "../components/Dashboard/LearningMaterials"
 import Activities from "../components/Dashboard/Activities"
 import ConfirmHostelPayment from "../components/Modals/ConfirmHostelPayment"
 import Refund from "../components/Modals/Refund"
+
+import { colRef } from "../firebase/firebase"
+import { getDocs } from "firebase/firestore"
 
 export default function Dashboard(){
     const [showHostelPayment, setShowHostelPayment] = useState(false);
@@ -15,6 +18,30 @@ export default function Dashboard(){
     const [refundSuccess, setRefundSuccess] = useState(false);
     const [showRefundModal, setShowRefundModal] = useState(false);
     const [showRefundStatus, setShowRefundStatus] = useState(false);
+
+    const [studentsData, setStudentsData] = useState([])
+
+    const fetchStudents = async ()=> {
+        const querySnapshot = await getDocs(colRef);
+
+        const students = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        }));
+        
+        return students;
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const fetchedStudents = await fetchStudents();
+          setStudentsData(fetchedStudents);
+        };
+      
+        fetchData();
+    }, []);
+
+    console.log(studentsData)
 
     return (
         <main className="lg:flex lg:items-start">
