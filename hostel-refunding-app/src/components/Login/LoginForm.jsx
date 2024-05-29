@@ -9,19 +9,21 @@ import { auth } from "../../firebase/firebase";
 export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
 
     const handleSubmit = async (e)=> {
         e.preventDefault();
+        setIsLogin(true)
         try {
             const loginData = await signInWithEmailAndPassword(auth, email, password);
 
             if(loginData) {
+                setIsLogin(false)
                 window.location.href = "/dashboard"
             }
         } catch (error) {
-            console.error(error);
+            alert(error);
         }
     }
 
@@ -77,9 +79,12 @@ export default function LoginForm() {
                     <a href="" className="text-[14px] text-[#6941C6] font-[600] ">Forgot Password?</a>
                 </div>
 
-                {/* <Link to={'/dashboard'} className="mb-[50px] "> */}
+                {isLogin ?
+                    <button className="bg-[#101720] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Loading...</button>
+                    :
                     <button className="bg-[#101720] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button>
-                {/* </Link> */}
+                }
+
 
                 <div className="flex gap-[10px] justify-center text-[14px] ">
                     <p>Don&apos;t have an account?</p>

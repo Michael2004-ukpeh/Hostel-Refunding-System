@@ -13,7 +13,7 @@ export default function Statistics({setShowHostelPayment,hostelAllocationMessage
         <>
             <div className="mb-[30px] ">
                 <h2 className="text-[30px] font-[600] text-[#000] ">Welcome {studentData?.firstName}</h2>
-                <p className="text-[#475467] text-[16px] font-[400] "><span>Computer Science</span> - <span className='uppercase'>{studentData?.matNo}</span></p>
+                <p className="text-[#475467] text-[16px] font-[400] "><span>{studentData?.department}</span> - <span className='uppercase'>{studentData?.matNo}</span></p>
             </div>
 
             <div className="text-[#000] grid grid-cols-1 gap-4 lg:grid-cols-3 mb-[35px] ">

@@ -59,15 +59,16 @@ export default function Dashboard(){
       }, []);
 
     return (
-        <main className="lg:flex lg:items-start">
-            <Navbar studentData={studentData} />
+        <main className="lg:flex lg:items-start relative">
 
-            {isLoading  ? (<div className="flex justify-center item-center text-[30px] ">Loading...</div>)
+            {isLoading  ? (<div className="absolute top-[200px] left-[45%] text-[50px] font-[600] ">Loading...</div>)
             
             :
 
             (
                 <>
+                <Navbar studentData={studentData} />
+
                 <div className=" w-full ">
                 
                     <section className="px-[20px] lg:px-[30px] bg-[#fff] py-[30px] w-full h-full ">
@@ -95,6 +96,7 @@ export default function Dashboard(){
                     setSuccessfulPayment={setSuccessfulPayment}
                     hostelAllocationMessage={hostelAllocationMessage}
                     setHostelAllocationMessage={setHostelAllocationMessage}
+                    studentData={studentData}
                 />
     
                 <Refund 

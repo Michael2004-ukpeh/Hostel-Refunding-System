@@ -4,7 +4,7 @@ import { PaystackButton } from 'react-paystack';
 import hostels from '../../../utils/hostel.json';
 
 
-export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelPayment, setHostelAllocationMessage }) {
+export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelPayment, setHostelAllocationMessage, studentData }) {
     const publicKey = "pk_test_6247428fc2936651257b94d02a7491b2cff7018a";
 
     const [name, setName] = useState('');
@@ -15,7 +15,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
     const [gender, setGender] = useState('');
 
     const componentProps = {
-        email: 'chosenvincent@gmail.com',
+        email: studentData?.email,
         amount: 30000 * 100,
         metadata: {
             name,
@@ -53,7 +53,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         <input 
                             type="text" 
                             placeholder='Enter full name' 
-                            value="Vincent Chosen"
+                            value={`${studentData?.firstName} ${studentData?.lastName}`}
                             onChange={(e)=> setName(e.target.value)}
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
                             disabled
@@ -65,7 +65,7 @@ export default function ConfirmHostelPayment({ showHostelPayment, setShowHostelP
                         <input 
                             type="email" 
                             placeholder='Enter email' 
-                            value="chosenvincent@gmail.com"
+                            value={studentData?.email}
                             onChange={(e)=> setEmail(e.target.value)}
                             className='w-full p-[10px] border-[1px] border-[#DFE5DA] rounded-[8px] outline-0 ' 
                             disabled
