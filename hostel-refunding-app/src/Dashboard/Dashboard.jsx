@@ -7,8 +7,9 @@ import Activities from "../components/Dashboard/Activities"
 import ConfirmHostelPayment from "../components/Modals/ConfirmHostelPayment"
 import Refund from "../components/Modals/Refund"
 
-import { colRef } from "../firebase/firebase"
-import { getDocs } from "firebase/firestore"
+import { auth, colRef, db} from "../firebase/firebase"
+import { doc, getDoc, getDocs, where, query } from "firebase/firestore"
+import { onAuthStateChanged } from "firebase/auth"
 
 export default function Dashboard(){
     const [showHostelPayment, setShowHostelPayment] = useState(false);
@@ -19,69 +20,95 @@ export default function Dashboard(){
     const [showRefundModal, setShowRefundModal] = useState(false);
     const [showRefundStatus, setShowRefundStatus] = useState(false);
 
-    const [studentsData, setStudentsData] = useState([])
-
-    const fetchStudents = async ()=> {
-        const querySnapshot = await getDocs(colRef);
-
-        const students = querySnapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
-        
-        return students;
-    }
+    const [studentData, setStudentData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
-          const fetchedStudents = await fetchStudents();
-          setStudentsData(fetchedStudents);
-        };
-      
-        fetchData();
-    }, []);
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+              setIsLoading(true);
+              const userEmail = user.email;
+          
+              const q = query(colRef, where("email", "==", userEmail)); // Filter by email
+          
+              try {
+                const querySnapshot = await getDocs(q); 
+                if (querySnapshot.size > 0) { 
+                  const docRef = querySnapshot.docs[0].ref; 
+                  const docSnapshot = await getDoc(docRef); 
 
-    console.log(studentsData)
+                  if (docSnapshot.exists()) {
+                    setStudentData(docSnapshot.data());
+                  } else {
+                    console.log("User with email not found:", userEmail);
+                    setStudentData({})
+                  }
+                } else {
+                  console.log("No documents found in the query");
+                  setStudentData(null)
+                }
+              } catch (error) {
+                console.error("Error fetching user data:", error);
+              } finally {
+                setIsLoading(false);
+              }
+            }
+          });
+    
+        return unsubscribe; // Cleanup function to prevent memory leaks
+      }, []);
 
     return (
         <main className="lg:flex lg:items-start">
-            <Navbar />
+            <Navbar studentData={studentData} />
 
-            <div className=" w-full ">
-                <section className="px-[20px] lg:px-[30px] bg-[#fff] py-[30px] w-full h-full ">
-                    
-                    <Statistics
-                        setShowHostelPayment={setShowHostelPayment}
-                        hostelAllocationMessage={hostelAllocationMessage}
-                        setRefundSuccess={setRefundSuccess}
-                        showRefundStatus={showRefundStatus}
-                        showRefundModal={showRefundModal}
-                        setShowRefundModal={setShowRefundModal}
-                    />
+            {isLoading  ? (<div className="flex justify-center item-center text-[30px] ">Loading...</div>)
+            
+            :
 
-                    <div className="flex flex-col lg:flex-row lg:gap-[30px] 2xl:gap-[50px]">
-                        <LearningMaterials />
-                        <Activities />
-                    </div>
-                </section>
-            </div>
+            (
+                <>
+                <div className=" w-full ">
+                
+                    <section className="px-[20px] lg:px-[30px] bg-[#fff] py-[30px] w-full h-full ">
+                        
+                        <Statistics
+                            setShowHostelPayment={setShowHostelPayment}
+                            hostelAllocationMessage={hostelAllocationMessage}
+                            setRefundSuccess={setRefundSuccess}
+                            showRefundStatus={showRefundStatus}
+                            showRefundModal={showRefundModal}
+                            setShowRefundModal={setShowRefundModal}
+                            studentData={studentData}
+                        />
+    
+                        <div className="flex flex-col lg:flex-row lg:gap-[30px] 2xl:gap-[50px]">
+                            <LearningMaterials />
+                            <Activities studentData={studentData} />
+                        </div>
+                    </section>
+                </div>
+    
+                <ConfirmHostelPayment 
+                    showHostelPayment={showHostelPayment} 
+                    setShowHostelPayment={setShowHostelPayment}
+                    setSuccessfulPayment={setSuccessfulPayment}
+                    hostelAllocationMessage={hostelAllocationMessage}
+                    setHostelAllocationMessage={setHostelAllocationMessage}
+                />
+    
+                <Refund 
+                    refundSuccess={refundSuccess}
+                    setRefundSuccess={setRefundSuccess}
+                    setShowRefundModal={setShowRefundModal}
+                    showRefundStatus={showRefundStatus}
+                    setShowRefundStatus={setShowRefundStatus}
+                    setHostelAllocationMessage={setHostelAllocationMessage}
+                />
+                </>
+            )
+        }
 
-            <ConfirmHostelPayment 
-                showHostelPayment={showHostelPayment} 
-                setShowHostelPayment={setShowHostelPayment}
-                setSuccessfulPayment={setSuccessfulPayment}
-                hostelAllocationMessage={hostelAllocationMessage}
-                setHostelAllocationMessage={setHostelAllocationMessage}
-            />
-
-            <Refund 
-                refundSuccess={refundSuccess}
-                setRefundSuccess={setRefundSuccess}
-                setShowRefundModal={setShowRefundModal}
-                showRefundStatus={showRefundStatus}
-                setShowRefundStatus={setShowRefundStatus}
-                setHostelAllocationMessage={setHostelAllocationMessage}
-            />
         </main>
     )
 }

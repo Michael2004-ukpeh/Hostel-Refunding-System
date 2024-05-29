@@ -7,8 +7,10 @@ import {
 import { useEffect } from "react";
 
 
-export default function Navbar() {
+export default function Navbar({studentData}) {
   const { isOpen, onToggle } = useDisclosure();
+  let firstName = studentData?.firstName.charAt(0);
+  let lastName = studentData?.lastName.charAt(0);
 
   useEffect(() => {
     if (isOpen) {
@@ -117,17 +119,14 @@ export default function Navbar() {
 
           <Box className="flex items-start gap-[5px] mt-auto ">
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
-                <div className="w-[30px] h-[30px]  ">
-                  <img 
-                    src="/images/my-photo.jpg" 
-                    alt="Chosen"
-                    className="w-full h-full rounded-[50%]" 
-                  />
+                <div className="w-[40px] h-[40px] bg-[#f5f5f5] text-[#000] flex items-center justify-center gap-[3px] rounded-[50%] uppercase font-[700] text-[22px]  ">
+                    <p>{firstName}</p>
+                    <p>{lastName}</p>
                 </div>
 
                 <div>
-                  <p className="text-[14px] font-[600] ">Vincent Chosen Goteh</p>
-                  <p>chosenvincent@gmail.com</p>
+                  <p className="text-[14px] font-[600] ">{studentData?.firstName} {studentData?.lastName}</p>
+                  <p>{studentData?.email}</p>
                 </div>
             </div>
             

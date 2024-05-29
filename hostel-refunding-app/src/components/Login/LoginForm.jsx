@@ -1,11 +1,29 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from "../../firebase/firebase";
+
 
 export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setIsLogin] = useState(false);
+    // const [isLogin, setIsLogin] = useState(false);
+
+
+    const handleSubmit = async (e)=> {
+        e.preventDefault();
+        try {
+            const loginData = await signInWithEmailAndPassword(auth, email, password);
+
+            if(loginData) {
+                window.location.href = "/dashboard"
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <section className="md:w-[50%] flex flex-col md:justify-center ">
@@ -14,10 +32,7 @@ export default function LoginForm() {
                 <p className="text-[#667085] text-[16px] font-[400] ">Welcome back! Please enter your details.</p>
             </div>
 
-            <form onSubmit={(e)=> {
-                e.preventDefault();
-                console.log(email, password)
-            }} className="md:max-w-[360px] md:mx-auto " >
+            <form onSubmit={handleSubmit} className="md:max-w-[360px] md:mx-auto " >
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
                     <label htmlFor="email" className="text-[#344054] text-[14px] font-[500] ">Email</label>
                     <input 
@@ -27,6 +42,7 @@ export default function LoginForm() {
                         value={email}
                         onChange={(e)=> setEmail(e.target.value)}
                         placeholder="Enter your email"
+                        required
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
                     />
@@ -41,6 +57,7 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}
                         placeholder="Enter your password"
+                        required
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
                     />
@@ -60,9 +77,9 @@ export default function LoginForm() {
                     <a href="" className="text-[14px] text-[#6941C6] font-[600] ">Forgot Password?</a>
                 </div>
 
-                <Link to={'/dashboard'} className="mb-[50px] ">
+                {/* <Link to={'/dashboard'} className="mb-[50px] "> */}
                     <button className="bg-[#101720] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button>
-                </Link>
+                {/* </Link> */}
 
                 <div className="flex gap-[10px] justify-center text-[14px] ">
                     <p>Don&apos;t have an account?</p>
