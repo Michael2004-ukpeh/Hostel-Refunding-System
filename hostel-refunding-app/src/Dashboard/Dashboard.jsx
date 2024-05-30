@@ -6,9 +6,10 @@ import LearningMaterials from "../components/Dashboard/LearningMaterials"
 import Activities from "../components/Dashboard/Activities"
 import ConfirmHostelPayment from "../components/Modals/ConfirmHostelPayment"
 import Refund from "../components/Modals/Refund"
+import RefundMessage from "../components/Modals/RefundMessage"
 
-import { auth, colRef, db} from "../firebase/firebase"
-import { doc, getDoc, getDocs, where, query } from "firebase/firestore"
+import { auth, colRef } from "../firebase/firebase"
+import { getDoc, getDocs, where, query } from "firebase/firestore"
 import { onAuthStateChanged } from "firebase/auth"
 
 export default function Dashboard(){
@@ -19,6 +20,7 @@ export default function Dashboard(){
     const [refundSuccess, setRefundSuccess] = useState(false);
     const [showRefundModal, setShowRefundModal] = useState(false);
     const [showRefundStatus, setShowRefundStatus] = useState(false);
+    const [showRefundMessage, setShowRefundMessage] = useState(false)
 
     const [studentData, setStudentData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -81,6 +83,7 @@ export default function Dashboard(){
                             showRefundModal={showRefundModal}
                             setShowRefundModal={setShowRefundModal}
                             studentData={studentData}
+                            setShowRefundMessage={setShowRefundMessage}
                         />
     
                         <div className="flex flex-col lg:flex-row lg:gap-[30px] 2xl:gap-[50px]">
@@ -97,6 +100,12 @@ export default function Dashboard(){
                     hostelAllocationMessage={hostelAllocationMessage}
                     setHostelAllocationMessage={setHostelAllocationMessage}
                     studentData={studentData}
+                />
+
+                <RefundMessage 
+                    showRefundMessage={showRefundMessage} 
+                    setShowRefundMessage={setShowRefundMessage}
+                    setRefundSuccess={setRefundSuccess}
                 />
     
                 <Refund 

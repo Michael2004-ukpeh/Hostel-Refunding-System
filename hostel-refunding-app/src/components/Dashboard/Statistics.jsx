@@ -1,6 +1,6 @@
 import { FaEllipsisV } from 'react-icons/fa';
 
-export default function Statistics({setShowHostelPayment,hostelAllocationMessage, setRefundSuccess, showRefundStatus, showRefundModal, setShowRefundModal, studentData}) {
+export default function Statistics({setShowHostelPayment,hostelAllocationMessage, setShowRefundMessage, showRefundStatus, showRefundModal, setShowRefundModal, studentData}) {
 
 
     function handleRefundModal(){
@@ -48,7 +48,7 @@ export default function Statistics({setShowHostelPayment,hostelAllocationMessage
                     </div>}
 
                     <div style={{display: showRefundModal ? "block": "none"}} className='absolute top-[45px] right-[28px] h-[70px] shadow p-[30px] bg-[#f5f5f5] flex items-center rounded-[5px]  '>
-                        <button onClick={()=> setRefundSuccess(true)} className='bg-none '>Request for Refund</button>
+                        <button onClick={()=> setShowRefundMessage(true)} className='bg-none '>Request for Refund</button>
                     </div>
                 </div>
             </div>
